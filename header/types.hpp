@@ -2,11 +2,7 @@
 #include <iostream>
 #include <tuple>
 
-#define BRANCH_PRESERVE __attribute__((always_inline))
-
-namespace branch  {
 namespace context {
-    
     class alignas(16) cpu_register // 64 Byte.
     {
     public:
@@ -34,6 +30,9 @@ namespace context {
     {
         cpu_register cpu_context  ; // 64
         frame        stack_context; // 16
+        
+        uint64_t     stack_pointer = 0;
+        uint64_t     stack_size    = 0;
     };
 
     enum  execution_state
@@ -53,5 +52,4 @@ namespace context {
         Fp                  exec_function;
         std::tuple<Args...> exec_argument;
     };
-}
 }

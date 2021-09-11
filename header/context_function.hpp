@@ -26,7 +26,6 @@ namespace internal {
     template <typename Fp, typename... Args>
     void execute_to(context::context_entity&, context::context_entity&, execution_argument<Fp, Args...>&);
 }
-}
 
 template <typename Fp, typename... Args>
 void context::internal::execute_to(context::context_entity& prev, context::context_entity& next_ctx, execution_argument<Fp, Args...>& next)

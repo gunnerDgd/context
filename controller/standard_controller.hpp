@@ -4,7 +4,7 @@
 namespace context {
 
     template <typename StackAllocator>
-    class context_controller
+    class standard_controller
     {
     public:
         using context_type    = context_entity;

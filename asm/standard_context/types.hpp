@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <tuple>
 
 namespace context {
@@ -45,11 +44,11 @@ namespace context {
     template <typename Fp, typename... Args>
     struct execution_argument
     {
-        execution_argument(Fp f, Args&&... a)
-            : exec_argument(std::forward_as_tuple(a...)),
-              exec_function(f)                          {  }
+        execution_argument(Fp&& f, Args&&... a)
+            : exec_argument(std::forward<Args>(a)...),
+              exec_function(f)                       {  }
 
-        Fp                  exec_function;
-        std::tuple<Args...> exec_argument;
+        Fp                    exec_function;
+        std::tuple<Args&&...> exec_argument;
     };
 }

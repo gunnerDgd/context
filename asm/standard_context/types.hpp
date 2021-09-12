@@ -40,15 +40,4 @@ namespace context {
         running,
         stopped
     };
-
-    template <typename Fp, typename... Args>
-    struct execution_argument
-    {
-        execution_argument(Fp&& f, Args&&... a)
-            : exec_argument(std::forward<Args>(a)...),
-              exec_function(f)                       {  }
-
-        Fp                    exec_function;
-        std::tuple<Args&&...> exec_argument;
-    };
 }

@@ -1,9 +1,6 @@
 #include <context/asm/standard_context/types.hpp>
 
-namespace context {
-    thread_local extern context::context_entity* context_block;
-}
-
+thread_local extern context::context_entity* context_block;
 extern "C"
 {
     void context_store_cpu    (context::cpu_register& curr);

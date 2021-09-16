@@ -1,21 +1,21 @@
 #include <type_traits>
+#include <iostream>
 #include <tuple>
 
 namespace context {
     template <typename F, typename... Args>
     struct context_wrapper
     {
-        template <typename Fp, typename... FArg>
-        context_wrapper(Fp&& arg_fp, FArg&&... arg_farg) requires std::is_same_v<F, Fp>
-            : context_function(arg_fp),
-              context_argument(std::tuple<FArg&&...>(std::forward<FArg>(arg_farg)...)) { }
-            
-        ~context_wrapper() { delete reinterpret_cast<std::tuple<Args&&...>*>(context_argument); }
+        context_wrapper(F&& ctx_fp, std::tuple<Args...>& ctx_args)
+            : wrapped_function(ctx_fp),
+              wrapped_argument(ctx_args) { }
+        
+        void execute()                   { std::apply(wrapped_function, wrapped_argument); }
 
-        F                     context_function;
-        void*                 context_argument;
+        std::tuple<Args...>& wrapped_argument;
+        F&                   wrapped_function;
     };
 
     template <typename Fp, typename... Args>
-    static void context_executor(void*);
+    static void context_executor(void* exec_args) { reinterpret_cast<context_wrapper<Fp, Args...>*>(exec_args)->execute(); }
 }

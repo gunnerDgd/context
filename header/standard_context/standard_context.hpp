@@ -9,4 +9,3 @@ namespace internal {
     void switch_to (context::context_entity&);
     void execute_to(context::context_entity&, void(*)(void*), void*);
 }
-

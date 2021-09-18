@@ -1,4 +1,6 @@
 #include <type_traits>
+#include <xmmintrin.h>
+
 #include <context/controller/context_controller.hpp>
 #include <context/header/standard_context/standard_context.hpp>
 #include <context/controller/standard_controller/wrapped_executor.hpp>
@@ -111,4 +113,7 @@ void context::context_controller<context::context_entity, StackAllocator>::switc
 }
 
 template <typename StackAllocator>
-void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next) { switch_to(next); }
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next) 
+{
+    switch_to   (next); 
+}

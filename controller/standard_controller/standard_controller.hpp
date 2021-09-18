@@ -42,12 +42,15 @@ namespace context {
         // Necessary Parts for ControllerTraits.
     public:
         static context_pointer  allocate_context  (typename StackAllocator::size_type);
-        static context_pointer  allocate_context  ()                                  { return (context_block = new context_entity); }
+        static context_pointer  allocate_context  (context_type&, typename StackAllocator::size_type);
+        static context_pointer  allocate_context  ()                                  { return (new context_entity); }
+        
         static void             deallocate_context(context_pointer);
+        static void             deallocate_context(context_type&)  ;
         
         template <typename Fp, typename... Args>
         static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&);
-        static void             switch_context    (context_type&dc );
+        static void             switch_context    (context_type& dc);
 
         static context_pointer& current_context   () { return context_block; }
     };
@@ -63,8 +66,17 @@ typename context::context_controller<context::context_entity, StackAllocator>::c
     alloc_context->stack_context.rsp = reinterpret_cast<uint64_t>(alloc_context->stack_pointer) + stack_size;
     alloc_context->stack_context.rbp = alloc_context->stack_context.rsp;
 
-    context_block = alloc_context;
     return          alloc_context;
+}
+
+template <typename StackAllocator>
+typename context::context_controller<context::context_entity, StackAllocator>::context_pointer  
+         context::context_controller<context::context_entity, StackAllocator>::allocate_context(context_type& alloc_context, typename StackAllocator::size_type stack_size)
+{
+    alloc_context.stack_pointer     = reinterpret_cast<uint64_t>(StackAllocator::allocate(stack_size));
+    
+    alloc_context.stack_context.rsp = reinterpret_cast<uint64_t>(alloc_context.stack_pointer) + stack_size;
+    alloc_context.stack_context.rbp = alloc_context.stack_context.rsp;
 }
 
 template <typename StackAllocator>
@@ -77,6 +89,16 @@ void context::context_controller<context::context_entity, StackAllocator>::deall
     }
     
     delete dealloc_context;
+}
+
+template <typename StackAllocator>
+void context::context_controller<context::context_entity, StackAllocator>::deallocate_context(context_type& dealloc_context)
+{
+    if(dealloc_context.stack_pointer != 0)
+    {
+        StackAllocator::deallocate(reinterpret_cast<void*>(dealloc_context.stack_pointer),
+                                                           dealloc_context.stack_size)   ;
+    }
 }
         
 template <typename StackAllocator>

@@ -1,4 +1,5 @@
 #include <context/header/standard_context/standard_context.hpp>
+#include <iostream>
 
 thread_local context::context_entity* context_block;
 
@@ -7,7 +8,7 @@ void context::internal::execute_to(context::context_entity& context, void(*exec)
     context_store_cpu  (context_block->cpu_context)  ;
     context_store_stack(context_block->stack_context);
 
-    context_block  = &context;
+    context_block    = &context;
     context_load_stack (context_block->stack_context); // RDI : next.stack_context.
     
     exec(args);                                 // Execute Function.
@@ -18,7 +19,8 @@ void context::internal::switch_to(context::context_entity& next)
     context_store_cpu  (context_block->cpu_context)  ; // Store Previous CPU Context.
     context_store_stack(context_block->stack_context);
     
-    context_switch_to  (next);               // Restore Stack Context and Instruction Pointer.
+    context_block   = &next;
+    context_switch_to (*context_block);               // Restore Stack Context and Instruction Pointer.
 }
 
 void context::execute_to(context::context_entity& context, void(*exec)(void*), void* args)

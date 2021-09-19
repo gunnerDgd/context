@@ -1,7 +1,7 @@
 #include <context/header/standard_context/standard_context.hpp>
 #include <iostream>
 
-thread_local context::context_entity* context_block;
+thread_local context::context_entity* context_block = nullptr;
 
 void context::internal::execute_to(context::context_entity& context, void(*exec)(void*), void* args)
 {

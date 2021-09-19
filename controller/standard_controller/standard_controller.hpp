@@ -1,9 +1,4 @@
-#include <type_traits>
-#include <xmmintrin.h>
-
 #include <context/controller/context_controller.hpp>
-#include <context/header/standard_context/standard_context.hpp>
-#include <context/controller/standard_controller/wrapped_executor.hpp>
 
 namespace context {
 
@@ -40,6 +35,7 @@ namespace context {
         using controller_type = context_controller<context::context_entity, StackAllocator>;
         using context_type    = context_entity;
         using context_pointer = std::conditional_t<std::is_pointer_v<context_type>, context_type, std::add_pointer_t<context_type>>;
+        static constexpr context_pointer empty_context = nullptr;
         
         // Necessary Parts for ControllerTraits.
     public:

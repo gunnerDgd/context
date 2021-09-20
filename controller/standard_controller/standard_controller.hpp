@@ -46,15 +46,15 @@ namespace context {
         static void             deallocate_context(context_pointer);
         static void             deallocate_context(context_type&)  ;
         
-        template <typename C, typename R, typename... Args>
-        static void             switch_context    (context_type&, R(C::*)(Args...), std::tuple<Args...>&&, C*);
-        template <typename C, typename R>
-        static void             switch_context    (context_type&, R(C::*)(), C*);
+        template <typename C, typename Fp, typename... Args>
+        static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&, C*) requires std::is_member_function_pointer_v<Fp>;
+        template <typename C, typename Fp>
+        static void             switch_context    (context_type&, Fp&&, C*)                        requires std::is_member_function_pointer_v<Fp>;
         
         template <typename Fp, typename... Args>
-        static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&);
+        static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&)     requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>;
         template <typename Fp>
-        static void             switch_context    (context_type&, Fp&&) { execute_to(context_executor<Fp>, (void*)); }
+        static void             switch_context    (context_type&, Fp&&)                            requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>;
         static void             switch_context    (context_type& dc);
 
         static context_pointer& current_context   () { return context_block; }
@@ -105,15 +105,6 @@ void context::context_controller<context::context_entity, StackAllocator>::deall
                                                            dealloc_context.stack_size)   ;
     }
 }
-        
-template <typename StackAllocator>
-template <typename Fp, typename... Args>
-void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, 
-                                                                                          Fp&& next_exec, std::tuple<Args...>&& next_args)
-{
-    context_wrapper<Fp, Args...> switch_argument(next_exec, next_args);
-    execute_to                                  (next, context_executor<Fp, Args...>, (void*)&switch_argument);
-}
 
 template <typename StackAllocator>
 void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next) 
@@ -122,10 +113,36 @@ void context::context_controller<context::context_entity, StackAllocator>::switc
 }
 
 template <typename StackAllocator>
-template <typename C, typename R, typename... Args>
-void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next,
-                                                                                          R(C::*next_exec)(Args...), std::tuple<Args...>&& next_args, C* next_class)
+template <typename Fp, typename... Args>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, 
+                                                                                          Fp&& next_exec, std::tuple<Args...>&& next_args) requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>
 {
-    class_context_wrapper<C, R, Args...> switch_argument(next_class, next_exec, next_args);
-    execute_to                                          (next, context_executor<C, R, Args...>, (void*)&switch_argument);
+    context_wrapper<Fp, Args...> switch_argument(next_exec, next_args);
+    execute_to                                  (next, context_executor<Fp, Args...>, (void*)&switch_argument);
+}
+
+template <typename StackAllocator>
+template <typename Fp>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, Fp&& next_exec) requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>
+{
+    class_context_wrapper<Fp, void> switch_argument(next_exec);
+    execute_to                                     (next, context_executor<Fp, void>, (void*)&switch_argument);
+}
+
+template <typename StackAllocator>
+template <typename C, typename Fp, typename... Args>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next,
+                                                                                          Fp&& next_exec, std::tuple<Args...>&& next_args, C* next_class) requires std::is_member_function_pointer_v<Fp>
+{
+    class_context_wrapper<C, Fp, Args...> switch_argument(next_class, next_exec, next_args);
+    execute_to                                           (next, class_context_executor<C, Fp, Args...>, (void*)&switch_argument);
+}
+
+template <typename StackAllocator>
+template <typename C, typename Fp>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next,
+                                                                                          Fp&& next_exec, C* next_class) requires std::is_member_function_pointer_v<Fp>
+{
+    class_context_wrapper<C, Fp, void> switch_argument(next_class, next_exec);
+    execute_to                                        (next, class_context_executor<C, Fp, void>, (void*)&switch_argument);
 }

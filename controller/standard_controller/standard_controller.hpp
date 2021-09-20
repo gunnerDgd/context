@@ -46,8 +46,15 @@ namespace context {
         static void             deallocate_context(context_pointer);
         static void             deallocate_context(context_type&)  ;
         
+        template <typename C, typename R, typename... Args>
+        static void             switch_context    (context_type&, R(C::*)(Args...), std::tuple<Args...>&&, C*);
+        template <typename C, typename R>
+        static void             switch_context    (context_type&, R(C::*)(), C*);
+        
         template <typename Fp, typename... Args>
         static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&);
+        template <typename Fp>
+        static void             switch_context    (context_type&, Fp&&) { execute_to(context_executor<Fp>, (void*)); }
         static void             switch_context    (context_type& dc);
 
         static context_pointer& current_context   () { return context_block; }
@@ -112,4 +119,13 @@ template <typename StackAllocator>
 void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next) 
 {
     switch_to   (next); 
+}
+
+template <typename StackAllocator>
+template <typename C, typename R, typename... Args>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next,
+                                                                                          R(C::*next_exec)(Args...), std::tuple<Args...>&& next_args, C* next_class)
+{
+    class_context_wrapper<C, R, Args...> switch_argument(next_class, next_exec, next_args);
+    execute_to                                          (next, context_executor<C, R, Args...>, (void*)&switch_argument);
 }

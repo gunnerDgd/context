@@ -52,9 +52,9 @@ namespace context {
         static void             switch_context    (context_type&, Fp&&, C*)                        requires std::is_member_function_pointer_v<Fp>;
         
         template <typename Fp, typename... Args>
-        static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&)     requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>;
+        static void             switch_context    (context_type&, Fp&&, std::tuple<Args...>&&)     requires std::is_invocable_v<Fp, Args...>;
         template <typename Fp>
-        static void             switch_context    (context_type&, Fp&&)                            requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>;
+        static void             switch_context    (context_type&, Fp&&)                            requires std::is_invocable_v<Fp, void>;
         static void             switch_context    (context_type& dc);
 
         static context_pointer& current_context   () { return context_block; }
@@ -115,7 +115,7 @@ void context::context_controller<context::context_entity, StackAllocator>::switc
 template <typename StackAllocator>
 template <typename Fp, typename... Args>
 void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, 
-                                                                                          Fp&& next_exec, std::tuple<Args...>&& next_args) requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>
+                                                                                          Fp&& next_exec, std::tuple<Args...>&& next_args) requires std::is_invocable_v<Fp, Args...>
 {
     context_wrapper<Fp, Args...> switch_argument(next_exec, next_args);
     execute_to                                  (next, context_executor<Fp, Args...>, (void*)&switch_argument);
@@ -123,7 +123,7 @@ void context::context_controller<context::context_entity, StackAllocator>::switc
 
 template <typename StackAllocator>
 template <typename Fp>
-void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, Fp&& next_exec) requires std::is_function_v<std::remove_cv_t<std::remove_reference_t<Fp>>>
+void context::context_controller<context::context_entity, StackAllocator>::switch_context(context_type& next, Fp&& next_exec) requires std::is_invocable_v<Fp, void>
 {
     class_context_wrapper<Fp, void> switch_argument(next_exec);
     execute_to                                     (next, context_executor<Fp, void>, (void*)&switch_argument);

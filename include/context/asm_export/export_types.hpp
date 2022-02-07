@@ -3,10 +3,7 @@
 
 #define ALIGNED_STRUCT(name) struct alignas(16) name
 
-namespace context	 {
-namespace asm_export {
-namespace types		 {
-
+namespace context::asm_export::types {
 	typedef std::uint64_t register_type;
 	typedef union alignas(16)
 	{
@@ -71,6 +68,4 @@ namespace types		 {
 	};
 
 	typedef register_field context_entity;
-}	
-}
 }

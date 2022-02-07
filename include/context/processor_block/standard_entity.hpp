@@ -28,7 +28,9 @@ namespace context {
 		 
 	public:
 		template <typename PcbObject, typename ExecType, typename... ExecArgs>
-		static void execute_at(PcbObject&&, ExecType&&, ExecArgs&&...);
+		static PcbObject* execute_at(PcbObject&&, ExecType&&, ExecArgs&&...) requires is_executable<typename PcbObject::entity_type>::value;
+		template <typename PcbPrev, typename PcbCurr>
+		static void		  switch_to (PcbPrev&&, PcbCurr&&)					 requires is_executable<typename PcbPrev::entity_type>::value && is_executable<typename PcbCurr::entity_type>::value;
 	};
 
 	template <typename ExecType, typename... ExecArgs>
@@ -57,12 +59,28 @@ context::standard_entity::binded_execution<ExecType, ExecArgs...>::binded_execut
 template <typename ExecType, typename... ExecArgs>
 auto context::standard_entity::bind(ExecType&& exec, ExecArgs&&... args)
 {
-	return binded_exeuctution<ExecType, ExecArgs...>(exec, std::make_tuple(args...));
+	return new binded_execution<ExecType, ExecArgs...>(exec, std::make_tuple(args...));
 }
 
 template <typename ExecType, typename... ExecArgs>
 void context::standard_entity::binded_execution<ExecType, ExecArgs...>::execute(bind_exec_type* exec_bind)
 {
 	std::apply(exec_bind->binded_executor, exec_bind->binded_argument);
+	delete	   exec_bind;
 }
 
+template <typename PcbObject, typename ExecType, typename... ExecArgs>
+PcbObject* context::standard_entity::execute_at(PcbObject&& pcb, ExecType&& exec, ExecArgs&&... args) requires is_executable<typename PcbObject::entity_type>::value
+{
+	PcbObject* exec_pcb  = new PcbObject;
+	auto	   exec_bind = bind(exec, args...);
+
+	asm_export::store_and_execute(pcb, *exec_pcb, (execute_type)std::remove_pointer_t<decltype(exec_bind)>::execute, exec_bind);
+	return exec_bind;
+}
+
+template <typename PcbPrev, typename PcbCurr>
+void context::standard_entity::switch_to(PcbPrev&& pcb_prev, PcbCurr&& pcb_curr) requires is_executable<typename PcbPrev::entity_type>::value&& is_executable<typename PcbCurr::entity_type>::value
+{
+	asm_export::store_and_switch(pcb_prev, pcb_curr);
+}

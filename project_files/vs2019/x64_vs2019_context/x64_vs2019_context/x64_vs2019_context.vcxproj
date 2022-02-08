@@ -23,10 +23,14 @@
     <ClInclude Include="..\..\..\..\include\context\asm_export\export_types.hpp" />
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp" />
     <ClInclude Include="..\..\..\..\include\context\context_traits.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\stack\backend\stack_page.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\basic_stack.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\stack\forward.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\stack\stack_type.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\traits\basic_context_traits.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\stack\stack.cpp" />
+    <ClCompile Include="..\..\..\..\source\stack\stack_page.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\source\asm\x64_context.asm" />
@@ -95,6 +99,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\ifstu\Projects\context\include;$(IncludePath)</IncludePath>
+    <OutDir>C:\Users\ifstu\Projects\context\libs\x64\windows\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -139,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>

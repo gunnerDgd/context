@@ -10,20 +10,64 @@
 #include <iostream>
 
 namespace context {
-	template <stack_type AllocStack>
-	class basic_context<asm_export::types::context_entity, AllocStack>
+	template <typename ContextTraits, typename StackType>
+	class basic_context
 	{
+		
 	public:
-		typedef basic_context<asm_export::types::context_entity, stack<>> context_type;
-		typedef stack<>													  allocator_type;
-		typedef allocator_type::size_type								  alloc_size;
+		typedef			 ContextTraits							 traits_type;
+		typedef typename ContextTraits::entity_type				 entity_type;
+		typedef			 basic_context<ContextTraits, StackType> this_type;
+		
+		typedef typename traits_type::executable_type entity_executable;
+		typedef typename traits_type::argument_type	  entity_argument  ;
 
-		static constexpr alloc_size default_allocate = allocator_type::default_stack;
-		static constexpr alloc_size capture_current  = allocator_type::capture_stack;
+		typedef			 StackType					  stack_type  ;
+		typedef	typename StackType::size_type		  stack_size  ;
 
-		typedef asm_export::types::context_entity		  context_entity;
-		typedef std::add_pointer_t<context_type>		  context_pointer;
-		typedef std::add_lvalue_reference_t<context_type> context_reference;
+	public:
+		basic_context (stack_size) requires std::is_constructible_v<stack_type, stack_size>;
+		basic_context ();
+		~basic_context();
 
+	public:
+		static void switch_to (this_type&, this_type&);
+		static void execute_at(this_type&, this_type&, entity_executable, entity_argument);
+
+	private:
+		entity_type __M_context_entity;
+		stack_type  __M_context_stack ;
 	};
+}
+
+template <typename ContextTraits, typename StackType>
+context::basic_context<ContextTraits, StackType>::basic_context(stack_size size) requires std::is_constructible_v<stack_type, stack_size>
+	: __M_context_stack(size)
+{
+	traits_type::attach_stack(__M_context_entity, __M_context_stack);
+}
+
+template <typename ContextTraits, typename StackType>
+context::basic_context<ContextTraits, StackType>::basic_context() : __M_context_stack(0)
+{
+	traits_type::attach_stack(__M_context_entity, __M_context_stack);
+}
+
+
+template <typename ContextTraits, typename StackType>
+context::basic_context<ContextTraits, StackType>::~basic_context()
+{
+	traits_type::detach_stack(__M_context_entity, __M_context_stack);
+}
+
+template <typename ContextTraits, typename StackType>
+void context::basic_context<ContextTraits, StackType>::switch_to(this_type& prev, this_type& curr)
+{
+	traits_type::switch_to(prev.__M_context_entity, curr.__M_context_entity);
+}
+
+template <typename ContextTraits, typename StackType>
+void context::basic_context<ContextTraits, StackType>::execute_at(this_type& prev, this_type& curr, entity_executable exec, entity_argument args)
+{
+	traits_type::execute_at(prev.__M_context_entity, curr.__M_context_entity, exec, args);
 }

@@ -1,7 +1,9 @@
-#include <context/stack/stack_page.hpp>
+#include <context/stack/backend/stack_page.hpp>
 
 context::stack_page::pointer_type context::stack_page::allocate  (size_type size)
 {
+	if (size == 0) 
+		return nullptr;
 	return ::VirtualAlloc(nullptr, size, MEM_COMMIT, PAGE_READWRITE);
 }
 

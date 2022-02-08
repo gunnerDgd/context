@@ -25,6 +25,12 @@
     <Filter Include="Source Files\stack">
       <UniqueIdentifier>{4b174a9c-4a23-4031-90c8-694daa53e7db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\stack\backend">
+      <UniqueIdentifier>{2ef298f5-0759-4941-bb70-b94f042b8fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\traits">
+      <UniqueIdentifier>{964f62df-5ece-4c5f-8566-fad61b055f93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp">
@@ -42,9 +48,21 @@
     <ClInclude Include="..\..\..\..\include\context\stack\basic_stack.hpp">
       <Filter>Header Files\stack</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\forward.hpp">
+      <Filter>Header Files\stack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\stack_type.hpp">
+      <Filter>Header Files\stack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\backend\stack_page.hpp">
+      <Filter>Header Files\stack\backend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\basic_context_traits.hpp">
+      <Filter>Header Files\traits</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\stack\stack.cpp">
+    <ClCompile Include="..\..\..\..\source\stack\stack_page.cpp">
       <Filter>Source Files\stack</Filter>
     </ClCompile>
   </ItemGroup>

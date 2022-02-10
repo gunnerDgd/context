@@ -57,7 +57,7 @@ context::basic_context<ContextTraits, StackType>::basic_context() : __M_context_
 template <typename ContextTraits, typename StackType>
 context::basic_context<ContextTraits, StackType>::~basic_context()
 {
-	traits_type::detach_stack(__M_context_entity, __M_context_stack);
+	traits_type::detach_stack(__M_context_entity);
 }
 
 template <typename ContextTraits, typename StackType>

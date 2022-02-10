@@ -33,4 +33,4 @@ context::basic_stack<AllocBackend, context::pointer_based>::basic_stack(size_typ
 																								__M_stack_pointer(backend_type::allocate(alloc_size)) {  }
 
 template <typename AllocBackend>
-context::basic_stack<AllocBackend, context::pointer_based>::~basic_stack()																			  { backend_type::deallocate(__M_stack_pointer); }
+context::basic_stack<AllocBackend, context::pointer_based>::~basic_stack()																			  { backend_type::deallocate(__M_stack_pointer, __M_stack_size); }

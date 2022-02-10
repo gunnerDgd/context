@@ -23,9 +23,11 @@
     <ClInclude Include="..\..\..\..\include\context\asm_export\export_types.hpp" />
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp" />
     <ClInclude Include="..\..\..\..\include\context\context_traits.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\forward.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\backend\stack_page.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\basic_stack.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\forward.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\stack\traits.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\stack_type.hpp" />
     <ClInclude Include="..\..\..\..\include\context\traits\basic_context_traits.hpp" />
   </ItemGroup>

@@ -40,8 +40,8 @@ namespace context {
 template <typename StackType>
 void context::context_traits<StackType>::attach_stack(entity_type& entity, stack_type& stack)
 {
-	entity.r_allocated_stack = stack.allocated_pointer();
-	entity.r_allocated_size  = stack.allocated_size   ();
+	entity.r_allocated_stack = (std::uint64_t)stack.allocated_pointer();
+	entity.r_allocated_size  =				  stack.allocated_size   ();
 
 	entity.r_stack.rbp		 = entity.r_allocated_stack + entity.r_allocated_size;
 	entity.r_stack.rsp		 = entity.r_stack.rbp;

@@ -48,7 +48,7 @@
     <ClInclude Include="..\..\..\..\include\context\stack\basic_stack.hpp">
       <Filter>Header Files\stack</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\stack\forward.hpp">
+    <ClInclude Include="..\..\..\..\include\context\stack\traits.hpp">
       <Filter>Header Files\stack</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\stack\stack_type.hpp">
@@ -59,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\traits\basic_context_traits.hpp">
       <Filter>Header Files\traits</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\forward.hpp">
+      <Filter>Header Files\stack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\forward.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

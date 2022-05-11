@@ -5,5 +5,5 @@
 #include <context/traits/basic_context_traits.hpp>
 
 namespace context {
-	typedef basic_context<context_traits<stack::memory_page>, stack::memory_page> context;
+	typedef basic_context<context_traits<stack::memory_page>, stack::page> context;
 }

@@ -25,6 +25,9 @@
     <Filter Include="Source Files\traits">
       <UniqueIdentifier>{c4bbc409-eb27-4d85-92d5-fdc80f76a09e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\details">
+      <UniqueIdentifier>{43a81159-e50b-4097-b974-500c13703cfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp">
@@ -39,14 +42,11 @@
     <ClInclude Include="..\..\..\..\include\context\traits\default_traits.hpp">
       <Filter>Header Files\traits</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\forward.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\declare.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\traits\default_traits_exec.hpp">
-      <Filter>Header Files\traits</Filter>
+    <ClInclude Include="..\..\..\..\include\context\details\context_base.hpp">
+      <Filter>Header Files\details</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -22,10 +22,9 @@
     <ClInclude Include="..\..\..\..\include\context\asm_export\export.hpp" />
     <ClInclude Include="..\..\..\..\include\context\asm_export\export_types.hpp" />
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\context.hpp" />
     <ClInclude Include="..\..\..\..\include\context\declare.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\forward.hpp" />
     <ClInclude Include="..\..\..\..\include\context\traits\default_traits.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\traits\default_traits_exec.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\source\asm\x64_context.asm" />
@@ -96,8 +95,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\MinusOne\Projects\synapse-execution\context\include;$(IncludePath)</IncludePath>
-    <OutDir>C:\Users\ifstu\Projects\context\libs\x64\windows\</OutDir>
+    <IncludePath>D:\Programming\C++\Projects\experimental\synapse-context\context\include</IncludePath>
+    <OutDir>D:\Programming\C++\Projects\experimental\synapse-context\context\libs\x64\windows\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -144,7 +143,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>

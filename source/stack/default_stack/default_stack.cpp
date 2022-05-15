@@ -16,17 +16,23 @@ context::stack::default_stack::default_stack() // Creates Empty Stack.
 
 context::stack::default_stack::~default_stack() // Creates Empty Stack.
 {
-	::VirtualFree(__M_def_stack_pointer, )
+	::VirtualFree(__M_def_stack_pointer, 0, MEM_RELEASE);
 }
 
-context::stack::default_stack::default_stack(default_stack& cp_stack) // Migrates Stack.
-	: __M_def_stack_size(cp_stack.__M_def_stack_size)
+context::stack::default_stack
+context::stack::default_stack::duplicate(default_stack& cp_stack) // Migrates Stack.
 {
-	__M_def_stack_pointer = ::VirtualAlloc(nullptr, cp_stack.__M_def_stack_size, MEM_COMMIT, PAGE_READWRITE);
-	std::memcpy			(__M_def_stack_pointer, 
-				cp_stack.__M_def_stack_pointer, 
-			    cp_stack.__M_def_stack_size)  ;
+	default_stack dup_stack(cp_stack);
+				  dup_stack.__M_def_stack_pointer = ::VirtualAlloc(nullptr, cp_stack.__M_def_stack_size, MEM_COMMIT, PAGE_READWRITE);
+	
+	std::memcpy (dup_stack.__M_def_stack_pointer,
+			 	 cp_stack .__M_def_stack_pointer,
+			     cp_stack .__M_def_stack_size)  ; return dup_stack;
 }
+
+context::stack::default_stack::default_stack(default_stack& pCopy) // Creates Empty Stack.
+	: __M_def_stack_size   (pCopy.__M_def_stack_size),
+	  __M_def_stack_pointer(pCopy.__M_def_stack_pointer) {  }
 
 context::stack::default_stack::default_stack(default_stack&& mv_stack) noexcept // Moves Stack and Makes Previous Stack Object Empty.
 	: __M_def_stack_size   (mv_stack.__M_def_stack_size),

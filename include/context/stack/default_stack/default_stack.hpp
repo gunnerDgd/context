@@ -14,12 +14,13 @@ namespace context::stack {
 		default_stack ()		 ; // Creates Empty Stack.
 		~default_stack()		 ;
 
-		default_stack(default_stack&)		   ; // Migrates Stack.
-		default_stack(default_stack&&) noexcept; // Moves Stack and Makes Previous Stack Object Empty.
+		default_stack(default_stack&); // Migrates Stack.
+		default_stack(default_stack&&)  noexcept; // Moves Stack and Makes Previous Stack Object Empty.
 
 	public:
-		pointer   get_pointer(); // Requirement of PointerBasedStack
-		size_type size		 (); // Requirement of ExecutionStack.
+		static default_stack duplicate  (default_stack&);
+		pointer				 get_pointer(); // Requirement of PointerBasedStack
+		size_type			 size		(); // Requirement of ExecutionStack.
 
 	private:
 		pointer   __M_def_stack_pointer;

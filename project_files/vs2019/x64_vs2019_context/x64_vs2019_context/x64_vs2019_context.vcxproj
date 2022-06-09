@@ -19,13 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\context\basic_context.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\context.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\declare.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\traits\default_traits.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\context\default_traits\default_traits.cpp" />
+    <ClInclude Include="..\..\..\..\include\context\all.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

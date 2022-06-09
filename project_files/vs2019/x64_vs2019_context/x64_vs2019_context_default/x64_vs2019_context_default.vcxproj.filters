@@ -48,12 +48,21 @@
     <ClInclude Include="..\..\..\..\include\context\traits\default\default_types.h">
       <Filter>Header Files\default</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default.hpp">
+      <Filter>Header Files\default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default_executable.hpp">
+      <Filter>Header Files\default</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\context\default\details\context_default.c">
       <Filter>Source Files\default\details</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\source\context\default\default.c">
+      <Filter>Source Files\default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\context\default\default.cpp">
       <Filter>Source Files\default</Filter>
     </ClCompile>
   </ItemGroup>

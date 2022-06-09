@@ -21,13 +21,13 @@ __synapse_context_default_execute_from(__synapse_context_default_entity* pPrev, 
 	__synapse_context_default_entity* ptr_curr
 		= __synapse_context_default_initialize();
 
-	store_and_execute(&pPrev->register_field, &ptr_curr->register_field, pExec, pExec, pExecArgs);
+	store_and_execute(&pPrev->register_field, &ptr_curr->register_field, pExec, pExecArgs);
 	return ptr_curr;
 }
 
 void
 __synapse_context_default_attach_stack(__synapse_context_default_entity* pEntity, void* pStack, size_t pStackSize)
 {
-	pEntity->attached_stack		 = pStack	 ;
-	pEntity->attached_stack_size = pStackSize;
+	pEntity->attached_stack		 = (uint64_t)pStack	   ;
+	pEntity->attached_stack_size =			 pStackSize;
 }

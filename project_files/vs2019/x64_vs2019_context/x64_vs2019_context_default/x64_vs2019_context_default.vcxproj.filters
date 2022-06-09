@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\default">
+      <UniqueIdentifier>{8d0a9ab3-763a-419d-aa4a-4f8a515d2a89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\default\asm_export">
+      <UniqueIdentifier>{fe60a70b-496a-4223-9c3d-add77591ff9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\default\details">
+      <UniqueIdentifier>{19b6fd5e-1e2c-4b47-a1b7-f0d67851c002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\default">
+      <UniqueIdentifier>{86983316-c49e-40a8-80d4-d05110725541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\default\details">
+      <UniqueIdentifier>{c59b4059-90a1-4d58-ac3f-cda8e99e8bad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export_types.h">
+      <Filter>Header Files\default\asm_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export.h">
+      <Filter>Header Files\default\asm_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default_types.h">
+      <Filter>Header Files\default\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default.h">
+      <Filter>Header Files\default\details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default.h">
+      <Filter>Header Files\default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default_types.h">
+      <Filter>Header Files\default</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\source\context\default\details\context_default.c">
+      <Filter>Source Files\default\details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\context\default\default.c">
+      <Filter>Source Files\default</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

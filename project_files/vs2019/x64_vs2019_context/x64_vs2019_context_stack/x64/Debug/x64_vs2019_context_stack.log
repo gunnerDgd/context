@@ -1,2 +1,5 @@
-﻿  default_stack.cpp
+﻿  default_stack.c
+  context_stack_default_stack.c
+  Generating Code...
+x64\Debug\default_stack.obj : warning LNK4042: object specified more than once; extras ignored
   x64_vs2019_context_stack.vcxproj -> D:\Programming\C++\Projects\experimental\synapse-context\context\libs\x64\windows\x64_vs2019_context_stack.lib

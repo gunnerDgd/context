@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\asm_export">
-      <UniqueIdentifier>{d935b1c4-3255-4dce-a3ab-65c7412941ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\asm">
-      <UniqueIdentifier>{f7c8c6be-68bd-4f0a-8903-bc7deb1094e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\traits">
       <UniqueIdentifier>{964f62df-5ece-4c5f-8566-fad61b055f93}</UniqueIdentifier>
     </Filter>
@@ -33,35 +27,15 @@
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\asm_export\export.hpp">
-      <Filter>Header Files\asm_export</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\asm_export\export_types.hpp">
-      <Filter>Header Files\asm_export</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\traits\default_traits.hpp">
       <Filter>Header Files\traits</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\declare.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\details\context_base.hpp">
-      <Filter>Header Files\details</Filter>
+    <ClInclude Include="..\..\..\..\include\context\context.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\source\asm\x64_context.asm">
-      <Filter>Source Files\asm</Filter>
-    </None>
-    <None Include="..\..\..\..\source\asm\x64_context_load.asm">
-      <Filter>Source Files\asm</Filter>
-    </None>
-    <None Include="..\..\..\..\source\asm\x64_context_stack.asm">
-      <Filter>Source Files\asm</Filter>
-    </None>
-    <None Include="..\..\..\..\source\asm\x64_context_store.asm">
-      <Filter>Source Files\asm</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\context\default_traits\default_traits.cpp">

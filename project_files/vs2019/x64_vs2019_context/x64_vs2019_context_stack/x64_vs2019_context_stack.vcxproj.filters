@@ -19,15 +19,39 @@
     <Filter Include="Source Files\default_stack">
       <UniqueIdentifier>{91110015-8237-4bfc-acd1-0fc6401f4a09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\default_stack\details">
+      <UniqueIdentifier>{49df1f8e-d8af-44dc-9b15-a63fa60c268d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\default_stack\details">
+      <UniqueIdentifier>{c737b476-b04b-4827-9391-0a5b2b6e9366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.hpp">
       <Filter>Header Files\default_stack</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.h">
+      <Filter>Header Files\default_stack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\details\context_stack_default_stack.h">
+      <Filter>Header Files\default_stack\details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.cpp">
       <Filter>Source Files\default_stack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.c">
+      <Filter>Source Files\default_stack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\stack\default_stack\details\context_stack_default_stack.c">
+      <Filter>Source Files\default_stack\details</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

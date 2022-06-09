@@ -19,22 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.h" />
-    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\details\context_stack_default_stack.h" />
-    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.h" />
-    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.hpp" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export.h" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export_types.h" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default.h" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\default_types.h" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default.h" />
+    <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.c" />
-    <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.cpp" />
-    <ClCompile Include="..\..\..\..\source\stack\default_stack\details\context_stack_default_stack.c" />
+    <ClCompile Include="..\..\..\..\source\context\default\default.c" />
+    <ClCompile Include="..\..\..\..\source\context\default\details\context_default.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8714f916-52af-409e-b56e-1c1521ca4945}</ProjectGuid>
-    <RootNamespace>x64vs2019contextstack</RootNamespace>
+    <ProjectGuid>{197ca275-03c3-4b1e-9163-289d6a35192d}</ProjectGuid>
+    <RootNamespace>x64vs2019contextdefault</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -82,19 +82,8 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-context\include</IncludePath>
-    <OutDir>D:\Programming\C++\Projects\experimental\synapse-context\context\libs\x64\windows\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-context\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>

@@ -1,49 +1,54 @@
 #include <context/stack/default_stack/default_stack.hpp>
-#include <Windows.h>
 
-#include <cstdlib>
-#include <cstring>
-
-context::stack::default_stack::default_stack(size_type sz_stack) // Creates Stack with Given Size.
-	: __M_def_stack_size(sz_stack)
+context::stack::default_stack::default_stack(size_type pSize) // Creates Stack with Given Size.
+	: __M_stack_traits	  (synapse_context_stack_default_stack_initialize(4096)),
+	  __M_stack_alloc_size(pSize)
 {
-	__M_def_stack_pointer = ::VirtualAlloc(nullptr, sz_stack, MEM_COMMIT, PAGE_READWRITE);
+	__M_stack_alloc = 
+		synapse_context_stack_traits_allocate((*__M_stack_traits), NULL, (pSize / 4096) + 1);
 }
 
 context::stack::default_stack::default_stack() // Creates Empty Stack.
-	: __M_def_stack_size   (0),
-	  __M_def_stack_pointer(nullptr) {  }
+	: __M_stack_traits(nullptr)	{  }
 
 context::stack::default_stack::~default_stack() // Creates Empty Stack.
 {
-	::VirtualFree(__M_def_stack_pointer, 0, MEM_RELEASE);
+	synapse_context_stack_default_stack_cleanup(__M_stack_traits);
 }
 
 context::stack::default_stack
-context::stack::default_stack::duplicate(default_stack& cp_stack) // Migrates Stack.
+context::stack::default_stack::resize(default_stack& pPrevStack, size_t pNewSize) // Migrates Stack.
 {
-	default_stack dup_stack(cp_stack);
-				  dup_stack.__M_def_stack_pointer = ::VirtualAlloc(nullptr, cp_stack.__M_def_stack_size, MEM_COMMIT, PAGE_READWRITE);
+	pointer ptr_new_stack =
+		synapse_context_stack_traits_resize((*pPrevStack.__M_stack_traits), pPrevStack.__M_stack_alloc, pPrevStack.size(), pNewSize);
+
+	pPrevStack.__M_stack_alloc_size = pNewSize;
+	pPrevStack.__M_stack_alloc      = ptr_new_stack;
 	
-	std::memcpy (dup_stack.__M_def_stack_pointer,
-			 	 cp_stack .__M_def_stack_pointer,
-			     cp_stack .__M_def_stack_size)  ; return dup_stack;
+	return default_stack(std::move(pPrevStack));
 }
 
-context::stack::default_stack::default_stack(default_stack& pCopy) // Creates Empty Stack.
-	: __M_def_stack_size   (pCopy.__M_def_stack_size),
-	  __M_def_stack_pointer(pCopy.__M_def_stack_pointer) {  }
-
-context::stack::default_stack::default_stack(default_stack&& mv_stack) noexcept // Moves Stack and Makes Previous Stack Object Empty.
-	: __M_def_stack_size   (mv_stack.__M_def_stack_size),
-	  __M_def_stack_pointer(mv_stack.__M_def_stack_pointer)
+context::stack::default_stack
+context::stack::default_stack::migrate(default_stack& pPrevStack) // Migrates Stack.
 {
-	mv_stack.__M_def_stack_size    = 0;
-	mv_stack.__M_def_stack_pointer = nullptr;
+	pointer ptr_new_stack =
+		synapse_context_stack_traits_migrate((*pPrevStack.__M_stack_traits), pPrevStack.__M_stack_alloc, pPrevStack.size());
+
+										 pPrevStack.__M_stack_alloc = ptr_new_stack;
+	return default_stack(std::move(pPrevStack));
+}
+
+context::stack::default_stack::default_stack(default_stack&& pMove) noexcept // Moves Stack and Makes Previous Stack Object Empty.
+	: __M_stack_alloc     (pMove.__M_stack_alloc)     ,
+	  __M_stack_alloc_size(pMove.__M_stack_alloc_size),
+	  __M_stack_traits    (pMove.__M_stack_traits)
+{
+	pMove.__M_stack_alloc  = nullptr;
+	pMove.__M_stack_traits = nullptr;
 }
 
 typename context::stack::default_stack::pointer   
-		 context::stack::default_stack::get_pointer() { return __M_def_stack_pointer; }
+		 context::stack::default_stack::get_pointer() { return __M_stack_alloc; }
 
 typename context::stack::default_stack::size_type 
-		 context::stack::default_stack::size()		  { return __M_def_stack_size   ; }
+		 context::stack::default_stack::size()		  { return __M_stack_alloc_size; }

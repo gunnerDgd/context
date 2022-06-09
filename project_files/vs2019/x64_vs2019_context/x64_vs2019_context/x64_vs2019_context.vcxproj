@@ -19,18 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\context\asm_export\export.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\asm_export\export_types.hpp" />
     <ClInclude Include="..\..\..\..\include\context\basic_context.hpp" />
     <ClInclude Include="..\..\..\..\include\context\context.hpp" />
     <ClInclude Include="..\..\..\..\include\context\declare.hpp" />
     <ClInclude Include="..\..\..\..\include\context\traits\default_traits.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\source\asm\x64_context.asm" />
-    <None Include="..\..\..\..\source\asm\x64_context_load.asm" />
-    <None Include="..\..\..\..\source\asm\x64_context_stack.asm" />
-    <None Include="..\..\..\..\source\asm\x64_context_store.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\context\default_traits\default_traits.cpp" />
@@ -95,7 +87,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Programming\C++\Projects\experimental\synapse-context\context\include</IncludePath>
+    <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-context\include</IncludePath>
     <OutDir>D:\Programming\C++\Projects\experimental\synapse-context\context\libs\x64\windows\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +136,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>

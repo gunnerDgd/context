@@ -1,4 +1,4 @@
 ﻿  default.c
-  default.cpp
-x64\Debug\default.obj : warning LNK4042: object specified more than once; extras ignored
-  x64_vs2019_context_default.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-context\project_files\vs2019\x64_vs2019_context\x64\Debug\x64_vs2019_context_default.lib
+  context_default.c
+  Generating Code...
+  x64_vs2019_context_default.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-context\libs\x64\windows\x64_vs2019_context_default.lib

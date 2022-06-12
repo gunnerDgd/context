@@ -22,15 +22,12 @@
     <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export.h" />
     <ClInclude Include="..\..\..\..\include\context\traits\default\asm_export\export_types.h" />
     <ClInclude Include="..\..\..\..\include\context\traits\default\default.h" />
-    <ClInclude Include="..\..\..\..\include\context\traits\default\default.hpp" />
-    <ClInclude Include="..\..\..\..\include\context\traits\default\default_executable.hpp" />
     <ClInclude Include="..\..\..\..\include\context\traits\default\default_types.h" />
     <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default.h" />
     <ClInclude Include="..\..\..\..\include\context\traits\default\details\context_default_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\context\default\default.c" />
-    <ClCompile Include="..\..\..\..\source\context\default\default.cpp" />
     <ClCompile Include="..\..\..\..\source\context\default\details\context_default.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -87,6 +84,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-context\include;$(IncludePath)</IncludePath>
+    <OutDir>E:\Programming\C++\Projects\Experimental\synapse-context\libs\x64\windows\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

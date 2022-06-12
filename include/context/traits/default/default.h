@@ -8,7 +8,7 @@ void
 synapse_context_default_cleanup     (synapse_context_default_entity);
 
 synapse_context_default_entity
-synapse_context_default_execute_from(synapse_context_default_entity, void(*)(void*), void*);
+synapse_context_default_execute_from(synapse_context_default_entity, void(*)(synapse_context_default_entity, void*), void*);
 
 void
 synapse_context_default_switch_to   (synapse_context_default_entity, synapse_context_default_entity);

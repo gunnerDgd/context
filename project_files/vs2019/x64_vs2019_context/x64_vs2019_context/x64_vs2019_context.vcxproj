@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\context\all.h" />
     <ClInclude Include="..\..\..\..\include\context\all.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

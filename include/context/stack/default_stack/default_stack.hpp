@@ -3,7 +3,8 @@
 
 extern "C"
 {
-	#include <context/stack/default_stack/default_stack.h>
+#include <context/stack/stack_traits.h>
+#include <context/stack/default_stack/default_stack.h>
 }
 
 namespace context::stack {

@@ -21,5 +21,8 @@
     <ClInclude Include="..\..\..\..\include\context\all.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\context\all.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

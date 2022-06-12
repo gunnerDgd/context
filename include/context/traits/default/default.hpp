@@ -13,6 +13,9 @@ namespace context {
 		template <typename ExecType, typename... ExecArgs>
 		class executable;
 		using native_handle_type = synapse_context_default_entity;
+
+		template <typename InExecType, typename... InExecArgs>
+		executable(InExecType&&, InExecArgs&&...)->executable<InExecType&&, InExecArgs&&...>;
 	
 	private:
 		default_context(native_handle_type);

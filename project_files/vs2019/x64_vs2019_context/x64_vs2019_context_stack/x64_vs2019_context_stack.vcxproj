@@ -20,14 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.h" />
-    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.hpp" />
     <ClInclude Include="..\..\..\..\include\context\stack\default_stack\details\context_stack_default_stack.h" />
     <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.h" />
-    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.c" />
-    <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.cpp" />
     <ClCompile Include="..\..\..\..\source\stack\default_stack\details\context_stack_default_stack.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -91,7 +88,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-context\include</IncludePath>
-    <OutDir>D:\Programming\C++\Projects\experimental\synapse-context\context\libs\x64\windows\</OutDir>
+    <OutDir>E:\Programming\C++\Projects\Experimental\synapse-context\libs\x64\windows\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

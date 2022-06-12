@@ -10,7 +10,7 @@ namespace context {
 
 		std::tuple<ExecArgs...>			  __M_exec_args;
 		std::remove_reference_t<ExecType> __M_exec;
-		static void						  __execute(void*);
+		static void						  __execute(synapse_context_default_entity, void*);
 	
 	public:
 		template <typename InExecType, typename... InExecArgs>
@@ -25,11 +25,14 @@ context::default_context::executable<ExecType, ExecArgs...>::executable(InExecTy
 	  __M_exec	   (pExec)								{  }
 
 template <typename ExecType, typename... ExecArgs>
-void context::default_context::executable<ExecType, ExecArgs...>::__execute(void* pArgs)
+void context::default_context::executable<ExecType, ExecArgs...>::__execute(synapse_context_default_entity pPrev, void* pArgs)
 {
 	executable* ptr_exec 
 		= reinterpret_cast<executable*>(pArgs);
 
-	std::apply(ptr_exec->__M_exec, ptr_exec->__M_exec_args);
-	
+	context::default_context ptr_prev_context(pPrev);
+
+	std::apply(ptr_exec->__M_exec, 
+		std::tuple_cat(std::tuple<context::default_context&>(ptr_prev_context),
+															 ptr_exec->__M_exec_args));
 }

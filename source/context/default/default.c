@@ -17,7 +17,7 @@ synapse_context_default_cleanup(synapse_context_default_entity pEntity)
 }
 
 synapse_context_default_entity
-synapse_context_default_execute_from(synapse_context_default_entity pEntity, void(*pExec)(void*), void* pExecArgs)
+synapse_context_default_execute_from(synapse_context_default_entity pEntity, void(*pExec)(synapse_context_default_entity, void*), void* pExecArgs)
 {
 	synapse_context_default_entity ptr_return = 
 		{ .opaque = __synapse_context_default_execute_from(pEntity.opaque, pExec, pExecArgs) };

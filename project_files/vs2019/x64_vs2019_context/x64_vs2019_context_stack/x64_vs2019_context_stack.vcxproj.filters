@@ -27,13 +27,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.hpp">
-      <Filter>Header Files\default_stack</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\context\stack\stack_traits.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\context\stack\default_stack\default_stack.h">
@@ -44,9 +38,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.cpp">
-      <Filter>Source Files\default_stack</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\source\stack\default_stack\default_stack.c">
       <Filter>Source Files\default_stack</Filter>
     </ClCompile>
